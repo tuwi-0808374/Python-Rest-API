@@ -1,5 +1,7 @@
+from flask import Flask
+from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
+from flask_sqlalchemy import SQLAlchemy
 import requests
-
 BASE = "http://127.0.0.1:5000/"
 
 data =  [
@@ -12,7 +14,13 @@ for i in range(0, len(data)):
     response = requests.put(BASE + "video/"  + str(i), data[i])
     print(response.json())
 
-response = requests.delete(BASE + "video/0")
-print(response)
-response = requests.get(BASE + "video/6")
+# response = requests.delete(BASE + "video/0")
+# print(response)
+response = requests.get(BASE + "video/0")
+print(response.json())
+
+response = requests.patch(BASE + "video/0", {"views": 1212121212})
+print(response.json())
+
+response = requests.get(BASE + "video/0")
 print(response.json())
